@@ -28,9 +28,11 @@ const Countdown = React.createClass({
   startTimer: function () {
     this.timer = setInterval(() => {
       let newCount = this.state.count - 1;
-      this.setState({
-        count: newCount >= 0 ? newCount : 0
-      });
+      if (newCount > 0) {
+        this.setState({ count: newCount });
+      } else {
+        this.setState({ countdownStatus: 'stopped' });
+      }
     }, 1000);
   },
   handleSetCountdown: function (seconds) {
